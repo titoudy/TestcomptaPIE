@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { db, auth } from "./firebase";
+import Admin from "./Admin";
 import {
   collection, doc, getDocs, addDoc, updateDoc, deleteDoc, onSnapshot, serverTimestamp, query, orderBy
 } from "firebase/firestore";
@@ -782,6 +783,7 @@ export default function App() {
     { id: "contrats", label: "Contrats", icon: "📄", section: "RH" },
     { id: "paie", label: "Fiches de paie", icon: "💶", section: "Paie" },
     { id: "frais", label: "Notes de frais", icon: "🧾", section: "Paie", badge: fraisAttente },
+    { id: "admin", label: "Administration", icon: "⚙️", section: "Système" },
   ];
 
   const titles = {
@@ -869,6 +871,7 @@ export default function App() {
               )}
               {page === "paie" && <FichesPaie salaries={salaries} toast={toast} />}
               {page === "frais" && <NotesFrais frais={frais} setFrais={setFrais} salaries={salaries} toast={toast} />}
+              {page === "admin" && <Admin salaries={salaries} toast={toast} />}
             </>
           )}
         </main>
